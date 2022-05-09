@@ -11,4 +11,7 @@ This class builds a merkle tree using the Solidity Keccak function from [web3py]
 The merkle tree is built with each layer having the nodes sorted in ascending order.
 
 ## Running Tests
-To run tests
+To run tests, run `poetry run pytest`.
+
+## License
+This repository is licensed under the MIT license.
