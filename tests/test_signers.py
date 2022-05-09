@@ -1,5 +1,5 @@
 import pytest
-from evm_utils.signers import EIP191Signer
+from evm_sc_utils.signers import EIP191Signer
 from eth_account.messages import SignableMessage
 from eth_account import Account
 from web3 import Web3

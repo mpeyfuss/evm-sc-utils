@@ -1,6 +1,6 @@
 from typing import List
 from eth_typing import Hash32
-from evm_utils.merkle_tree import MerkleTreeKeccak
+from evm_sc_utils.merkle_tree import MerkleTreeKeccak
 from web3 import Web3
 
 """

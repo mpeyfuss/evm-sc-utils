@@ -1,4 +1,4 @@
-# evm-utils
+# evm-sc-utils
 Utilities for helping develop EVM compatible smart contracts. All utilities are written in Python. The repository uses [Poetry](https://python-poetry.org/) for packaging and dependency management.
 
 ## Classes

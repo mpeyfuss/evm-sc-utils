@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "evm-utils"
+name = "evm-sc-utils"
 version = "0.1.0"
-description = "Utilities that are helpful when developing Ethereum Smart Contracts with Python."
+description = "Utilities that are helpful when developing Ethereum Virtual Machine Smart Contracts with Python."
 authors = ["mpeyfuss <82735893+mpeyfuss@users.noreply.github.com>"]
 license = "MIT"
 
