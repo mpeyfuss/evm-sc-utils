@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "evm-sc-utils"
-version = "0.1.0"
+version = "0.2.0"
 description = "Utilities that are helpful when developing Ethereum Virtual Machine Smart Contracts with Python."
 authors = ["mpeyfuss <82735893+mpeyfuss@users.noreply.github.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = ">=3.8,<3.10"
-web3 = "^5.29.0"
+python = ">=3.8,<4"
+web3 = "^5.27.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.2"

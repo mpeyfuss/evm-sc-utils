@@ -1,6 +1,7 @@
 import pytest
 from evm_sc_utils.signers import EIP191Signer
 from eth_account.messages import SignableMessage
+from eth_account.datastructures import SignedMessage
 from eth_account import Account
 from web3 import Web3
 
@@ -56,6 +57,17 @@ class Test_Random_Signer:
                 ["\x19Ethereum Signed Message:\n64", 1, 2],
             )
             == sig.messageHash
+        )
+
+    def test_address_uint256(self, random_signer):
+        msg: SignableMessage = random_signer.get_signable_message(["address", "uint256"], ["0x66aB6D9362d4F35596279692F0251Db635165871", 2])
+        sig: SignedMessage = random_signer.sign(["address", "uint256"], ["0x66aB6D9362d4F35596279692F0251Db635165871", 2])
+        assert (
+            Account.recover_message(msg, signature=sig.signature) == random_signer.address
+            and Web3.solidityKeccak(
+                ["string", "address", "uint256"],
+                ["\x19Ethereum Signed Message:\n52", "0x66aB6D9362d4F35596279692F0251Db635165871", 2]
+            ) == sig.messageHash
         )
 
 
