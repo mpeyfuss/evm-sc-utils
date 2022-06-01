@@ -70,6 +70,9 @@ class Test_Random_Signer:
             ) == sig.messageHash
         )
 
+    def test_string(self, random_signer):
+        assert EIP191Signer.get_signable_message(["string"], ["I have 100€"]).body.hex() == "49206861766520313030e282ac"
+
 
 class Test_Known_Signer:
     # test sending empty lists to sign

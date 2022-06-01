@@ -66,8 +66,7 @@ class EIP191Signer:
                 length = 20
                 val = int(value, 16)
             elif "string" in abi_type.lower():
-                length = len(value)
-                data.extend(value.encode("utf-8"))  # extend in place
+                data.extend(bytes(value, "utf-8"))  # extend in place
 
             if isinstance(val, int):
                 data.extend(bytearray(val.to_bytes(length=length, byteorder="big")))
