@@ -10,9 +10,9 @@ from web3 import Web3
 
 def test_three_addresses():
     leaves: List[str] = [
-        "0x46C0a5326E643E4f71D3149d50B48216e174Ae84",
         "0x807c47A89F720fe4Ee9b8343c286Fc886f43191b",
         "0x844ec86426F076647A5362706a04570A5965473B",
+        "0x46C0a5326E643E4f71D3149d50B48216e174Ae84"
     ]
     hashed_leaves: List[Hash32] = [
         Web3.solidityKeccak(["address"], [leaf]) for leaf in leaves
