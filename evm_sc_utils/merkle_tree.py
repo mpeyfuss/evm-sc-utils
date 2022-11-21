@@ -32,7 +32,8 @@ class MerkleTreeKeccak:
     @staticmethod
     def __compute_tree(leaves: List[HexBytes]):
         tree: Dict = {}
-        leaves.sort()
+        # sorted leaves
+        #leaves.sort()
         tree[0] = leaves
         node_level = 0
         while len(tree[node_level]) != 1:
@@ -42,21 +43,24 @@ class MerkleTreeKeccak:
             is_odd = num_of_nodes % 2 != 0
             if is_odd:
                 for i in range(0, num_of_nodes - 1, 2):
+                    pair = [nodes[i], nodes[i + 1]]
+                    # sorted pairs
+                    pair.sort()
                     next_nodes.append(
                         Web3.solidityKeccak(
-                            ["bytes32", "bytes32"], [nodes[i], nodes[i + 1]]
+                            ["bytes32", "bytes32"], [pair[0], pair[1]]
                         )
                     )
                 next_nodes.append(nodes[-1])
             else:
                 for i in range(0, num_of_nodes, 2):
+                    pair = [nodes[i], nodes[i + 1]]
+                    pair.sort()
                     next_nodes.append(
                         Web3.solidityKeccak(
-                            ["bytes32", "bytes32"], [nodes[i], nodes[i + 1]]
+                            ["bytes32", "bytes32"], [pair[0], pair[1]]
                         )
                     )
-            # sort in place
-            next_nodes.sort()
             tree[node_level + 1] = next_nodes
             node_level = len(tree.keys()) - 1
         return tree
@@ -88,16 +92,22 @@ class MerkleTreeKeccak:
                     break
             if loc % 2 == 0 and loc != len(self.tree[i]) - 1:
                 proof.append(self.tree[i][loc + 1].hex())
+                pair = [self.tree[i][loc], self.tree[i][loc + 1]]
+                # sorted pairs
+                pair.sort()
                 lookup_val = Web3.solidityKeccak(
                     ["bytes32", "bytes32"],
-                    [self.tree[i][loc], self.tree[i][loc + 1]],
+                    [pair[0], pair[1]],
                 )
             elif loc % 2 == 0 and loc == len(self.tree[i]) - 1:
                 pass
             else:
                 proof.append(self.tree[i][loc - 1].hex())
+                pair = [self.tree[i][loc - 1], self.tree[i][loc]]
+                # sorted pairs
+                pair.sort()
                 lookup_val = Web3.solidityKeccak(
                     ["bytes32", "bytes32"],
-                    [self.tree[i][loc - 1], self.tree[i][loc]],
+                    [pair[0], pair[1]],
                 )
         return proof
